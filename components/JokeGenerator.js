@@ -1,27 +1,26 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
-export default function Joker ({joke, btnText}) {
-    return (
-        <>
-        <h1>{joke.setup}</h1>
-        <p>{btnText}</p>
-        </>
-    )
+export default function Joker({ joke, bttnText }) {
+  return (
+    <>
+      <h1>{joke.setup}</h1>
+      <p>{bttnText}</p>
+    </>
+  );
 }
 
-Joker.PropTypes = {
-    joke: PropTypes.shape({
-        setup: PropTypes.string,
-        punchline: PropTypes.string
-    })
+Joker.propTypes = {
+  joke: PropTypes.shape({
+    setup: PropTypes.string,
+    punchline: PropTypes.string,
+  }),
+  bttnText: PropTypes.string,
 };
 
-Joker.defualtProps = {
-    joke: {
-        setup: 'Defualt Setup',
-        punchline: 'Defualt Punchline',
-    },
-    btnText: 'Get A Joke',
-
+Joker.defaultProps = {
+  joke: {
+    setup: 'Default Setup',
+    punchline: 'Default Punchline',
+  },
+  bttnText: 'Get A Joke',
 };
