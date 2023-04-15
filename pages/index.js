@@ -1,17 +1,33 @@
-function Home() {
-  return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
-      }}
-    >
-      <h1>Welcome Home!</h1>
-    </div>
-  );
-}
+import { useState } from 'react';
+import getJoke from '../api/jokeData';
+import Joker from '../components/JokeGenerator';
 
+function Home() {
+  const [btnText, setBtnText] = useState('Get A Joke');
+  const [joke, setJoke] = useState({});
+
+
+  const getAJoke = () => {
+    getJoke() .then((jokeObject) => {
+      setJoke(
+        {
+          setup: jokeObject.setup,
+          punchline: jokeObject.delivery,
+        },
+      );
+    });
+     
+  };
+
+  
+  return (
+    <>
+  <h1>{joke.setup}</h1>
+  <h2>{joke.punchline}</h2>
+  <button type="button" onClick={getAJoke}>{btnText}</button>
+  <Joker joke={joke} btnText={btnText}/>
+  </>
+)
+
+}
 export default Home;
